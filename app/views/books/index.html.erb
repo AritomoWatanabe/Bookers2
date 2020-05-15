@@ -1,0 +1,60 @@
+
+<P class = "message"><%= flash[:destroy] %></P>
+
+<body>
+
+<h1>Books</h1>
+
+<table>
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Body</th>
+		</tr>
+	</thead>
+
+	<tbody>
+	<% @books.each do |book| %>
+		<tr>
+		<td><%= book.title %></td>
+		<td><%= book.body %></td>
+
+	<td><%= link_to "Show", "/books/#{book.id}" %></td>
+	<td><%= link_to "Edit", "/books/#{book.id}/edit" %></td>
+	<td><%= link_to "Destroy", destroy_book_path(book.id), method: :delete, "data-confirm" => "Are you sure？" %></td>
+
+		</tr>
+		</tbody>
+	<% end %>
+	</tbody>
+</table>
+
+</body>
+
+<h2>New book</h2>
+
+<% if @book.errors.any? %>
+  <div class="alert-warning">
+    <ul>
+      <% @book.errors.full_messages.each do |message| %>
+        <li><%= "error" +" "+ message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for(@book, url: '/books') do |f| %>
+
+<div class="field">
+  <p class= "new-title">Titel</p>
+  <%= f.text_field :title %>
+</div>
+
+<div class="field">
+  <p class= "new-body">Body</p>
+  <%= f.text_area :body %>
+</div>
+
+  <%= f.submit 'Create Book' %>
+
+<% end %>

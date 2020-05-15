@@ -1,0 +1,11 @@
+
+
+<P class = "message"><%= flash[:create] %></P>
+<P class = "message"><%= flash[:update] %></P>
+
+
+<p class = "book-details"><b>Title: </b><%= @book.title %></p>
+<p class = "book-details"><b>Body: </b><%= @book.body %></p>
+
+<%= link_to "Edit", edit_book_path(@book.id) %> |
+<%= link_to "Back", books_path %>
