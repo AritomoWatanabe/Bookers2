@@ -15,6 +15,7 @@ class BooksController < ApplicationController
 			redirect_to book_path(@book.id) #詳細画面に飛ぶ
 		else
 			@books = Book.all
+			@book = Book.new
 			render 'index'
 		end
 	end
@@ -33,7 +34,7 @@ class BooksController < ApplicationController
 			flash[:update] = "Book was successfully updated."
 			redirect_to book_path(@book.id)
 		else
-			@books = Book.all
+			@book = Book.new
 			render "edit"
 		end
 	end
